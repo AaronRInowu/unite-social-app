@@ -1,21 +1,18 @@
-# Welcome to your Expo app 👋
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).<br />
+Incluye typescript, react-native-vector-icons, formik, yup.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este proyecto usa npm y "npx expo" para manejar las dependencias<br />
+First, install dependecies run the development server:
 
-## Get started
+```bash
 
-1. Install dependencies
+npm i
 
-   ```bash
-   npm install
-   ```
+npx expo start
 
-2. Start the app
+```
 
-   ```bash
-   npx expo start
-   ```
-
+Instala la aplicacion de ExpoGo y al iniciar el proyecto escanea el qr.
 In the output, you'll find options to open the app in a
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
@@ -25,26 +22,17 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
+## Organizaición del proyecto:
 
-When you're ready, run:
+El proyecto no cuenta con una carpeta src asi que se tiene todo lo que no sea una "ruta" en "setup" dentro de app.<br/>
+El proyecto tiene una carpeta assets para guardar imagenes y svg estaticos que se puedan usar.<br />
+Dentro de setup esta el resto del proyecto con el app router de next, otras carpetas son las de:
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+/components <br />
+/global <br /> &emsp;# La estructura general de los archivos que van aqui son de [[modulo]].[[carpeta]].ts
+/functions <br />
+/hooks<br />
+/interfaces<br />
+/styles <br /> &emsp;# Esta carpeta tiene su propio readme, tiene un archivo para los colores y otro para los estilos globales
+/templates <br /> &emsp;# Informacion dummy y/o informacion estatica que se puede mapear
+/services <br /> &emsp;# Son las llamadas a la api. <br /> &emsp;# La estructura general de los archivos que van aqui son de [[modulo]].axios.ts <br />&emsp;# Generalemente los GET que se deberian de llamar retrieveX o retrieveSingleX si es get por id y deberia de haber un retrieveGeneral que se envia un url y se puede tipar.
