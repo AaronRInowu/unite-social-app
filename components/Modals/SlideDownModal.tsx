@@ -1,7 +1,6 @@
 import { Modal, ModalProps, Text, TouchableOpacity, View } from "react-native";
 import AntIcons from "react-native-vector-icons/AntDesign";
-import { bgThird } from "../../globals/styles/colors";
-import globalStyles from "../../globals/styles/globalStyles";
+import { colors } from "../../global/styles/tailwindClasses";
 
 interface IslideDown extends ModalProps {
   title?: string;
@@ -39,15 +38,13 @@ export default function SlideDownModal(props: IslideDown) {
           maxHeight: `${modalSize}%`,
           padding: 24,
           overflow: "hidden",
-          backgroundColor: bgThird,
-          ...globalStyles.topRadiusXl,
+          backgroundColor: colors.bgThird,
         }}
+        className="rounded-t-custom-xl"
       >
         <View style={{ flexDirection: "row" }}>
           {title && (
-            <Text
-              style={{ ...globalStyles.mainTextColor, ...globalStyles.textLg }}
-            >
+            <Text className="text-main text-lg-custom">
               {title}
             </Text>
           )}

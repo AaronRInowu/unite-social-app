@@ -1,8 +1,7 @@
-import globalStyles from "@/globals/styles/globalStyles";
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import GradientButton from "../../inputs/GradientButton";
+import GradientButton from "../../Inputs/GradientButton";
 
 export default function ShareComponent() {
   const [tempConfirm, setTempConfirm] = useState(false);
@@ -43,25 +42,22 @@ export default function ShareComponent() {
 
   return (
     <View style={{ flexGrow: 1 }}>
-      <Text style={{ ...globalStyles.mainTextColor, ...globalStyles.textLg }}>
+      <Text className="text-main text-lg-custom">
         Share with friends
       </Text>
-      <Text style={{ ...globalStyles.mainTextColor }}>
-        Know someone who'd love it here? Send them an invite!
+      <Text className="text-main">
+        Know someone who&apos;d love it here? Send them an invite!
       </Text>
       <View style={{ marginTop: "auto", paddingBottom: 24, gap: 12 }}>
-        <Text style={{ ...globalStyles.mainTextColor }}>Share your link</Text>
+        <Text className="text-main">Share your link</Text>
         <TouchableOpacity
           onPress={handleCopy}
           activeOpacity={1}
-          style={{
-            ...globalStyles.defaultTextInput,
-            flexDirection: "row",
-            gap: 12,
-          }}
+          className="border border-input-border bg-input-bg text-main py-input-y px-input-x rounded-custom flex-row"
+          style={{ gap: 12 }}
         >
           <MaterialIcons name="link" color={"#fff"} size={20} />
-          <Text style={{ ...globalStyles.mainTextColor }}>Copy link</Text>
+          <Text className="text-main">Copy link</Text>
           <MaterialIcons
             name={tempConfirm ? "battery-check-outline" : "content-copy"}
             color={"#fff"}
@@ -69,11 +65,12 @@ export default function ShareComponent() {
             style={{ marginLeft: "auto" }}
           />
         </TouchableOpacity>
-        <Text style={{ ...globalStyles.mainTextColor }}>Share to</Text>
+        <Text className="text-main">Share to</Text>
         <View style={{ flexDirection: "row", gap: 12, flexWrap: "wrap" }}>
-          {shareApps.map((m) => {
+          {shareApps.map((m, index) => {
             return (
               <TouchableOpacity
+                key={index}
                 activeOpacity={1}
                 style={{
                   gap: 8,
@@ -92,7 +89,7 @@ export default function ShareComponent() {
                     <MaterialIcons name={m.icon} size={28} color={"#fff"} />
                   </GradientButton>
                 </View>
-                <Text style={{ ...globalStyles.mainTextColor }}>{m.value}</Text>
+                <Text className="text-main">{m.value}</Text>
               </TouchableOpacity>
             );
           })}
