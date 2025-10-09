@@ -46,7 +46,8 @@ export default function Index() {
             ...globalStyles.regularBtnStyle,
           }}
         >
-          <Text
+          <Link
+            href={"/mainsplash"}
             style={{
               ...globalStyles.mainTextColor,
               ...globalStyles.textXs,
@@ -54,7 +55,7 @@ export default function Index() {
             }}
           >
             Join for free
-          </Text>
+          </Link>
         </LinearGradient>
         <LinearGradient
           start={{ x: 0, y: 0 }}
