@@ -1,23 +1,13 @@
-import globalStyles from "@/globals/styles/globalStyles";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import CheckRadio from "../../inputs/CheckRadio";
-import GradientButton from "../../inputs/GradientButton";
+import CheckRadio from "../../Inputs/CheckRadio";
+import GradientButton from "../../Inputs/GradientButton";
 import SlideDownModal from "../../Modals/SlideDownModal";
 
 export default function InsertGender() {
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedIdentity, setSelectedIdentity] = useState("");
   const [openSelect, setOpenSelect] = useState(false);
-
-  const {
-    backgroundColor,
-    borderColor,
-    borderRadius,
-    borderWidth,
-    paddingHorizontal,
-    paddingVertical,
-  } = globalStyles.defaultTextInput;
 
   const genderSelection = [
     {
@@ -58,10 +48,10 @@ export default function InsertGender() {
   return (
     <>
       <View style={{ gap: 12 }}>
-        <Text style={{ ...globalStyles.mainTextColor, ...globalStyles.textXl }}>
+        <Text className="text-main text-xl-custom">
           Which gender best describes you?
         </Text>
-        <Text style={{ ...globalStyles.mainTextColor }}>
+        <Text className="text-main">
           We recognize that gender is fluid and personal. Choose what best
           represents you today.
         </Text>
@@ -71,12 +61,7 @@ export default function InsertGender() {
             return (
               <View
                 key={i}
-                style={{
-                  backgroundColor,
-                  borderColor,
-                  borderWidth,
-                  borderRadius,
-                }}
+                className="bg-input-bg border border-input-border rounded-custom"
               >
                 <View
                   style={{
@@ -88,13 +73,10 @@ export default function InsertGender() {
                   <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => handleSelection(m.value)}
-                    style={{
-                      width: "85%",
-                      paddingVertical,
-                      paddingHorizontal,
-                    }}
+                    className="py-input-y px-input-x"
+                    style={{ width: "85%" }}
                   >
-                    <Text style={{ ...globalStyles.mainTextColor }}>
+                    <Text className="text-main">
                       {m.value}
                     </Text>
                   </TouchableOpacity>
@@ -110,13 +92,10 @@ export default function InsertGender() {
                   <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => setOpenSelect(true)}
-                    style={{
-                      width: "85%",
-                      paddingVertical,
-                      paddingHorizontal,
-                    }}
+                    className="py-input-y px-input-x"
+                    style={{ width: "85%" }}
                   >
-                    <Text style={{ ...globalStyles.mainTextColor }}>
+                    <Text className="text-main">
                       {selectedIdentity !== ""
                         ? selectedIdentity
                         : "Add your gender identity > "}
@@ -148,14 +127,10 @@ export default function InsertGender() {
                 <TouchableOpacity
                   key={i}
                   activeOpacity={1}
-                  style={{
-                    ...globalStyles.defaultTextInput,
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
+                  className="border border-input-border bg-input-bg text-main py-input-y px-input-x rounded-custom justify-between flex-row"
                   onPress={() => setSelectedIdentity(m)}
                 >
-                  <Text style={{ ...globalStyles.mainTextColor }}>{m}</Text>
+                  <Text className="text-main">{m}</Text>
                   <CheckRadio selected={selectedIdentity === m} />
                 </TouchableOpacity>
               );
@@ -166,12 +141,7 @@ export default function InsertGender() {
           onPress={() => handleSaveIdentity(true)}
         >
           <GradientButton>
-            <Text
-              style={{
-                textAlign: "center",
-                ...globalStyles.mainTextColor,
-              }}
-            >
+            <Text className="text-center text-main">
               Save
             </Text>
           </GradientButton>

@@ -3,8 +3,6 @@ import { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import FaIcons from "react-native-vector-icons/FontAwesome6";
 import MaterialIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { infoBlue } from "../../globals/styles/colors";
-import globalStyles from "../../globals/styles/globalStyles";
 import SlideDownModal from "../Modals/SlideDownModal";
 
 export default function AddImage({ img }: { img?: string }) {
@@ -52,19 +50,15 @@ export default function AddImage({ img }: { img?: string }) {
         {image ? (
           <>
             <Image src={image} style={{ width: "100%", height: "100%" }} />
-            <MaterialIcons
-              style={{
-                position: "absolute",
-                backgroundColor: infoBlue,
-                borderRadius: 8,
-                right: 0,
-                bottom: 0,
-                padding: 4,
-              }}
-              name="square-edit-outline"
-              size={20}
-              color={"#fff"}
-            />
+            <View 
+              className="absolute bg-info-blue rounded-lg right-0 bottom-0 p-1"
+            >
+              <MaterialIcons
+                name="square-edit-outline"
+                size={20}
+                color={"#fff"}
+              />
+            </View>
           </>
         ) : (
           <MaterialIcons name="image-plus-outline" size={20} color={"#fff"} />
@@ -78,25 +72,22 @@ export default function AddImage({ img }: { img?: string }) {
       >
         {image && <Image src={image} style={{ width: "100%", height: 200 }} />}
         <View style={{ gap: 12, marginTop: "auto" }}>
-          <Text style={{ ...globalStyles.mainTextColor }}>
+          <Text className="text-main">
             {image
               ? "Do you want to change your photo?"
               : "Choose how you'd like to upload your photo:"}
           </Text>
           <TouchableOpacity
             activeOpacity={1}
-            style={{
-              ...globalStyles.defaultTextInput,
-              flexDirection: "row",
-              gap: 12,
-            }}
+            className="border border-input-border bg-input-bg text-main py-input-y px-input-x rounded-custom flex-row"
+            style={{ gap: 12 }}
           >
             <MaterialIcons
               name="camera-plus-outline"
               size={20}
               color={"#fff"}
             />
-            <Text style={{ ...globalStyles.mainTextColor }}>Take a photo</Text>
+            <Text className="text-main">Take a photo</Text>
             <FaIcons
               name="angle-right"
               size={20}
@@ -107,14 +98,11 @@ export default function AddImage({ img }: { img?: string }) {
           <TouchableOpacity
             onPress={pickImage}
             activeOpacity={1}
-            style={{
-              ...globalStyles.defaultTextInput,
-              flexDirection: "row",
-              gap: 12,
-            }}
+            className="border border-input-border bg-input-bg text-main py-input-y px-input-x rounded-custom flex-row"
+            style={{ gap: 12 }}
           >
             <MaterialIcons name="image-outline" size={20} color={"#Fff"} />
-            <Text style={{ ...globalStyles.mainTextColor }}>
+            <Text className="text-main">
               Choose from gallery
             </Text>
             <FaIcons
@@ -127,14 +115,11 @@ export default function AddImage({ img }: { img?: string }) {
           <TouchableOpacity
             onPress={removePhoto}
             activeOpacity={1}
-            style={{
-              ...globalStyles.defaultTextInput,
-              flexDirection: "row",
-              gap: 12,
-            }}
+            className="border border-input-border bg-input-bg text-main py-input-y px-input-x rounded-custom flex-row"
+            style={{ gap: 12 }}
           >
             <MaterialIcons name="trash-can-outline" size={20} color={"#Fff"} />
-            <Text style={{ ...globalStyles.mainTextColor }}>Remove photo</Text>
+            <Text className="text-main">Remove photo</Text>
             <FaIcons
               name="angle-right"
               size={20}

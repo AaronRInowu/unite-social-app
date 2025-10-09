@@ -1,4 +1,3 @@
-import globalStyles from "@/globals/styles/globalStyles";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
@@ -10,8 +9,6 @@ export default function ChooseMany({
   headers: { title: string; subtitle: string; counter: string };
 }) {
   const [chosenVibes, setChoseVibes] = useState<string[]>([]);
-  const { borderColor, backgroundColor, borderRadius, ...restStyle } =
-    globalStyles.defaultTextInput;
 
   const handleSelection = (value: string) => {
     setChoseVibes((prev) => {
@@ -34,11 +31,11 @@ export default function ChooseMany({
         maxHeight: "95%",
       }}
     >
-      <Text style={{ ...globalStyles.mainTextColor, ...globalStyles.textXl }}>
+      <Text className="text-main text-xl-custom">
         {headers.title}
       </Text>
-      <Text style={{ ...globalStyles.mainTextColor }}>{headers.subtitle}</Text>
-      <Text style={{ ...globalStyles.mainTextColor }}>{headers.counter}</Text>
+      <Text className="text-main">{headers.subtitle}</Text>
+      <Text className="text-main">{headers.counter}</Text>
       <ScrollView
         contentContainerStyle={{
           gap: 8,
@@ -52,19 +49,15 @@ export default function ChooseMany({
           return (
             <TouchableOpacity
               key={i}
-              style={{
-                ...restStyle,
-                borderRadius: 24,
-                borderColor: isSelected ? "#ffffff80" : borderColor,
-                backgroundColor: isSelected ? "#ffffff80" : backgroundColor,
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexDirection: "row",
-              }}
+              className={`py-input-y px-input-x rounded-3xl justify-between items-center flex-row ${
+                isSelected 
+                  ? 'border border-white/50 bg-white/50' 
+                  : 'border border-input-border bg-input-bg'
+              }`}
               activeOpacity={1}
               onPress={() => handleSelection(m)}
             >
-              <Text style={{ ...globalStyles.mainTextColor }}>{m}</Text>
+              <Text className="text-main">{m}</Text>
             </TouchableOpacity>
           );
         })}

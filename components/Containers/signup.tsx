@@ -1,4 +1,4 @@
-import GradientButton from "@/components/inputs/GradientButton";
+import GradientButton from "@/components/Inputs/GradientButton";
 import PageLayout from "@/components/layout/appBg";
 import { Link, useRouter } from "expo-router";
 import { useFormik } from "formik";
@@ -6,13 +6,11 @@ import { useState } from "react";
 import { Text, View } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 import * as YUP from "yup";
-import globalStyles from "../../globals/styles/globalStyles";
 import { axiosInstance } from "../../services/axiosConfig";
 
 export default function SignUpPage() {
   const [loader, setLoader] = useState(false);
   const router = useRouter();
-
   const formik = useFormik({
     initialValues: {
       phone: "",
@@ -20,6 +18,7 @@ export default function SignUpPage() {
     validationSchema: YUP.object().shape({
       phone: YUP.string().required("Please enter a phone."),
     }),
+
     onSubmit: async () => {
       setLoader(true);
       try {
@@ -36,49 +35,51 @@ export default function SignUpPage() {
     <PageLayout style={{ justifyContent: "space-between" }}>
       <View style={{ gap: 24 }}>
         <View style={{ gap: 12 }}>
-          <Text
-            style={{
-              ...globalStyles.mainTextColor,
-              ...globalStyles.textLg,
-            }}
+                    <Text
+            className="text-main text-lg-custom font-medium"
           >
-            What's your phone number?
+            What&apos;s your phone number?
           </Text>
           <Text
-            style={{
-              ...globalStyles.mainTextColor,
-            }}
+            className="text-main"
           >
-            We'll use your phone number to verify your account.
+            We&apos;ll use your phone number to verify your account.
           </Text>
         </View>
         <View style={{ gap: 12 }}>
           <Text
-            style={{
-              ...globalStyles.mainTextColor,
-            }}
+            className="text-main"
           >
             Phone number
           </Text>
-          <PhoneInput
+                    <PhoneInput
             defaultCode="US"
-            layout="first"
+            layout="second"
             containerStyle={{
-              paddingVertical: 0,
-              backgroundColor: "#ffffff20",
-              borderRadius: 16,
-              borderWidth: 2,
-              borderColor: "#ffffff40",
+              backgroundColor: "transparent",
             }}
-            textInputProps={{ placeholderTextColor: "#ffffff80" }}
-            textContainerStyle={{ backgroundColor: "#00000000" }}
-            codeTextStyle={{ color: "#ffffff80" }}
-            textInputStyle={{ color: "#ffffff80" }}
+            textContainerStyle={{
+              backgroundColor: "transparent",
+              borderColor: "#ddd",
+              borderWidth: 1,
+              borderTopRightRadius: 10,
+              borderBottomRightRadius: 10,
+            }}
+            textInputStyle={{
+              color: "#E8E9E9",
+            }}
+            codeTextStyle={{
+              color: "#E8E9E9",
+            }}
+            flagButtonStyle={{
+              borderColor: "#ddd",
+              borderWidth: 1,
+              borderTopLeftRadius: 10,
+              borderBottomLeftRadius: 10,
+            }}
           />
           <Text
-            style={{
-              ...globalStyles.mainTextColor,
-            }}
+            className="text-main"
           >
             By continuing, you agree to our Terms of Service and Privacy Policy.
             Your phone number is just for verification and keeping your account
@@ -86,15 +87,11 @@ export default function SignUpPage() {
           </Text>
         </View>
       </View>
-      <View style={{ gap: 12, paddingInline: 24 }}>
+        <View style={{ gap: 12, paddingInline: 24 }}>
         <GradientButton>
           <Link
             href={"/onboarding"}
-            style={{
-              ...globalStyles.mainTextColor,
-              ...globalStyles.textXs,
-              textAlign: "center",
-            }}
+            className="text-main text-xs-custom text-center"
           >
             Continue
           </Link>
