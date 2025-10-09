@@ -3,14 +3,15 @@ import { axiosInstance } from "./axiosConfig";
 export const retrieveGeneral = async (url: string) => {
   try {
     const finalUrl = url.startsWith("/") ? url : `/${url}`;
-    console.log(process.env.EXPO_PUBLIC_API_URL);
-    console.log(finalUrl);
     const res = await axiosInstance.get(finalUrl);
-    return res;
+    return res.data;
   } catch (error) {
+    console.log(error);
     if (error instanceof Error) {
+      console.error("Error message:", error.message);
       throw error;
     }
     throw error;
   }
 };
+  

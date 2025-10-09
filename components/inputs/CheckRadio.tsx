@@ -1,5 +1,4 @@
 import { StyleProp, TouchableOpacity, View, ViewStyle } from "react-native";
-import globalStyles from "../../globals/styles/globalStyles";
 
 export interface IradioDiv {
   style?: StyleProp<ViewStyle>;
@@ -8,31 +7,18 @@ export interface IradioDiv {
 }
 
 export default function CheckRadio({ style, onPress, selected }: IradioDiv) {
-  const styles: Object = style ? style : {};
+  const styles: object = style ? style : {};
   return (
     <TouchableOpacity
       activeOpacity={1}
-      style={{
-        padding: 3,
-        borderWidth: 1,
-        borderColor: `${globalStyles.mainTextColor.color}80`,
-        aspectRatio: 1,
-        maxHeight: "100%",
-        borderRadius: "100%",
-        ...styles,
-      }}
+      className={`p-1 border border-white/50 aspect-square max-h-full rounded-full`}
+      style={styles}
       onPress={onPress}
     >
       <View
-        style={{
-          backgroundColor: `${globalStyles.mainTextColor.color}${
-            selected ? "" : "00"
-          }`,
-          overflow: "hidden",
-          aspectRatio: 1,
-          maxHeight: "100%",
-          borderRadius: "100%",
-        }}
+        className={`overflow-hidden aspect-square max-h-full rounded-full ${
+          selected ? 'bg-white' : 'bg-transparent'
+        }`}
       />
     </TouchableOpacity>
   );

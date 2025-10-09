@@ -4,9 +4,8 @@ import { useState } from "react";
 import { Text, View } from "react-native";
 import PhoneInput from "react-native-phone-number-input";
 import * as YUP from "yup";
-import globalStyles from "../../../globals/styles/globalStyles";
 import { axiosInstance } from "../../../services/axiosConfig";
-import GradientButton from "../../inputs/GradientButton";
+import GradientButton from "../../Inputs/GradientButton";
 import PageLayout from "../../layout/appBg";
 
 export default function SignUpPage() {
@@ -37,26 +36,19 @@ export default function SignUpPage() {
       <View style={{ gap: 24 }}>
         <View style={{ gap: 12 }}>
           <Text
-            style={{
-              ...globalStyles.mainTextColor,
-              ...globalStyles.textLg,
-            }}
+            className="text-main text-lg-custom"
           >
-            What's your phone number?
+            What&apos;s your phone number?
           </Text>
           <Text
-            style={{
-              ...globalStyles.mainTextColor,
-            }}
+            className="text-main"
           >
-            We'll use your phone number to verify your account.
+            We&apos;ll use your phone number to verify your account.
           </Text>
         </View>
         <View style={{ gap: 12 }}>
           <Text
-            style={{
-              ...globalStyles.mainTextColor,
-            }}
+            className="text-main"
           >
             Phone number
           </Text>
@@ -76,9 +68,7 @@ export default function SignUpPage() {
             textInputStyle={{ color: "#ffffff80" }}
           />
           <Text
-            style={{
-              ...globalStyles.mainTextColor,
-            }}
+            className="text-main"
           >
             By continuing, you agree to our Terms of Service and Privacy Policy.
             Your phone number is just for verification and keeping your account
@@ -90,11 +80,7 @@ export default function SignUpPage() {
         <GradientButton>
           <Link
             href={"/onboarding"}
-            style={{
-              ...globalStyles.mainTextColor,
-              ...globalStyles.textXs,
-              textAlign: "center",
-            }}
+            className="text-main text-xs-custom text-center"
           >
             Continue
           </Link>

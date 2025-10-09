@@ -2,12 +2,7 @@ import PageLayout from "@/components/layout/appBg";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import { Text, View } from "react-native";
-import {
-  bgGradient2,
-  btnGradient1,
-  btnGradient2,
-} from "../globals/styles/colors";
-import globalStyles from "../globals/styles/globalStyles";
+import { colors, gradientColors } from "../global/styles/tailwindClasses";
 
 export default function Index() {
   return (
@@ -18,41 +13,28 @@ export default function Index() {
         paddingVertical: "25%",
       }}
     >
-      <View>
-        <Text
-          style={{
-            ...globalStyles.mainTextColor,
-            ...globalStyles.textXl,
-            textAlign: "center",
-          }}
-        >
-          unite
+      <View className="gap-4">
+        <Text className="text-main text-unite-title text-center font-satoshi-bold">
+          unitē
         </Text>
-        <Text
-          style={{
-            ...globalStyles.mainTextColor,
-            textAlign: "center",
-          }}
-        >
-          Where Human connections Meet Shared Experiences
+        <Text className="text-main text-xs-custom text-center font-satoshi-bold">
+          Where Human connections Meet{"\n"}Shared Experiences
         </Text>
       </View>
-      <View style={{ gap: 12, paddingInline: 24 }}>
+      <View style={{ gap: 12, paddingInline: 10 }}>
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
-          colors={[btnGradient1, btnGradient2]}
+          colors={gradientColors.button}
           style={{
-            ...globalStyles.regularBtnStyle,
+            borderRadius: 12,
+            padding: 15,
+            width: "100%",
           }}
         >
           <Link
-            href={"/mainsplash"}
-            style={{
-              ...globalStyles.mainTextColor,
-              ...globalStyles.textXs,
-              textAlign: "center",
-            }}
+            href={"/signup"}
+            className="text-main text-xs-custom text-center font-satoshi-medium"
           >
             Join for free
           </Link>
@@ -60,18 +42,19 @@ export default function Index() {
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
-          colors={[btnGradient1, btnGradient2]}
+          colors={gradientColors.button}
           style={{ padding: 1, borderRadius: 12 }}
         >
           <Link
-            href={"/signup"}
+            href={"/onboarding"}
             style={{
-              backgroundColor: bgGradient2,
-              ...globalStyles.regularBtnStyle,
-              ...globalStyles.mainTextColor,
-              ...globalStyles.textXs,
+              backgroundColor: colors.gradientEnd,
+              borderRadius: 12,
+              padding: 15,
+              width: "100%",
               textAlign: "center",
             }}
+            className="text-main text-xs-custom font-satoshi-medium"
           >
             Sign in
           </Link>

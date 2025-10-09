@@ -5,15 +5,14 @@ import InsertName from "@/components/Containers/OnboardingQuestions/OnbName";
 import InsertGallery from "@/components/Containers/OnboardingQuestions/OnbPhotos";
 import InsertSex from "@/components/Containers/OnboardingQuestions/OnbSex";
 import ShareComponent from "@/components/Containers/ShareComponent/ShareComponent";
-import GradientButton from "@/components/inputs/GradientButton";
+import GradientButton from "@/components/Inputs/GradientButton";
 import PageLayout from "@/components/layout/appBg";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { ArrowLeft2 } from 'iconsax-react-nativejs';
+import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { btnGradient1, btnGradient2 } from "../globals/styles/colors";
-import globalStyles from "../globals/styles/globalStyles";
-
+import { gradientColors } from "../global/styles/tailwindClasses";
 export default function OnboardingPage() {
   const router = useRouter();
   const [onboardingStep, setOnboardingStep] = useState(1);
@@ -37,7 +36,7 @@ export default function OnboardingPage() {
         const newStep = prev + (type === "add" ? 1 : -1);
         return newStep;
       });
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const vibes = [
@@ -134,12 +133,6 @@ export default function OnboardingPage() {
             }}
           />
         );
-      // case 9:
-      //   return (
-      //     <View>
-      //       <Text style={globalStyles.mainTextColor}>Aqui va la historia?</Text>
-      //     </View>
-      //   );
       case 9:
         return <InsertGallery />;
       case 10:
@@ -155,10 +148,8 @@ export default function OnboardingPage() {
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         <TouchableOpacity activeOpacity={1} onPress={() => handleSteps("rest")}>
-          <Text
-            style={{ ...globalStyles.mainTextColor, ...globalStyles.textXl }}
-          >
-            {"<"}
+          <Text className="text-main text-xl-custom">
+            <ArrowLeft2 size="20" color="#ffffffff" />
           </Text>
         </TouchableOpacity>
         <View
@@ -171,7 +162,7 @@ export default function OnboardingPage() {
           }}
         >
           <LinearGradient
-            colors={[btnGradient1, btnGradient2]}
+            colors={gradientColors.button}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={{
@@ -190,8 +181,14 @@ export default function OnboardingPage() {
         style={{ marginTop: "auto" }}
         onPress={() => handleSteps("add")}
       >
-        <GradientButton>
-          <Text style={{ ...globalStyles.mainTextColor, textAlign: "center" }}>
+        <GradientButton 
+        style={{
+          borderRadius: 12,
+          padding: 15,
+          width: '100%',
+        }}
+        >
+          <Text className="text-main text-xs-custom text-center font-satoshi-medium">
             Continue
           </Text>
         </GradientButton>

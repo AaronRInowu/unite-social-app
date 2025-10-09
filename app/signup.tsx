@@ -1,35 +1,41 @@
 import PageLayout from "@/components/layout/appBg";
-import { useCallback, useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import globalStyles from "../globals/styles/globalStyles";
-import { retrieveGeneral } from "../services/general.axios";
+import { useUsers } from "../hooks/useUsers";
 
 export default function TestOnbording() {
-  const [loader, setLoader] = useState(true);
-  const [users, setUsers] = useState([]);
-
-  const getUsers = useCallback(async () => {
-    if (loader) {
-      try {
-        const res = await retrieveGeneral("/users");
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoader(false);
-      }
-    }
-  }, [loader]);
-
-  useEffect(() => {
-    getUsers();
-  }, [getUsers]);
+  const { data: users, isLoading, error, isError } = useUsers();
 
   return (
     <PageLayout>
       <View>
-        <Text style={{ ...globalStyles.mainTextColor, ...globalStyles.textLg }}>
+        <Text className="text-main text-lg-custom">
           Choose user to finish onboarding
         </Text>
+        
+        {isLoading && (
+          <Text className="text-main">
+            Cargando usuarios...
+          </Text>
+        )}
+        
+        {isError && (
+          <Text className="text-main">
+            Error: {error?.message || 'Error al cargar usuarios'}
+          </Text>
+        )}
+        
+        {users && (
+          <Text className="text-main">
+            Usuarios cargados exitosamente
+            {
+              users.data.map((user: any) => (
+                <Text key={user.id} className="text-main">
+                  {user.name} - {user.email}
+                </Text>
+              ))
+            }
+          </Text>
+        )}
       </View>
     </PageLayout>
   );

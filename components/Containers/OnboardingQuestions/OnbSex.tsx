@@ -1,9 +1,8 @@
-import { bgThird } from "@/globals/styles/colors";
-import globalStyles from "@/globals/styles/globalStyles";
 import { useState } from "react";
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import CheckRadio from "../../inputs/CheckRadio";
-import GradientButton from "../../inputs/GradientButton";
+import { colors } from "../../../global/styles/tailwindClasses";
+import CheckRadio from "../../Inputs/CheckRadio";
+import GradientButton from "../../Inputs/GradientButton";
 
 export default function InsertSex() {
   const [sex, setSex] = useState("");
@@ -41,10 +40,10 @@ export default function InsertSex() {
   return (
     <>
       <View style={{ gap: 12 }}>
-        <Text style={{ ...globalStyles.mainTextColor, ...globalStyles.textXl }}>
+        <Text className="text-main text-xl-custom">
           Select your sexuality
         </Text>
-        <Text style={{ ...globalStyles.mainTextColor }}>
+        <Text className="text-main">
           Sexuality can be comlpex, evolving, and beautifully unique. Choose
           what reesonates with you in this moment.
         </Text>
@@ -54,16 +53,11 @@ export default function InsertSex() {
             return (
               <TouchableOpacity
                 key={i}
-                style={{
-                  ...globalStyles.defaultTextInput,
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flexDirection: "row",
-                }}
+                className="border border-input-border bg-input-bg text-main py-input-y px-input-x rounded-custom justify-between items-center flex-row"
                 activeOpacity={1}
                 onPress={() => handleSelection(m)}
               >
-                <Text style={{ ...globalStyles.mainTextColor }}>{m}</Text>
+                <Text className="text-main">{m}</Text>
                 <CheckRadio
                   style={{ height: 24, marginRight: 8 }}
                   selected={isSelected}
@@ -91,7 +85,7 @@ export default function InsertSex() {
             marginTop: "auto",
             height: "50%",
             maxHeight: "50%",
-            backgroundColor: bgThird,
+            backgroundColor: colors.bgThird,
             padding: 24,
             borderTopRightRadius: 24,
             borderTopLeftRadius: 24,
@@ -106,7 +100,7 @@ export default function InsertSex() {
             }}
           >
             <Text
-              style={{ ...globalStyles.mainTextColor, ...globalStyles.textLg }}
+              className="text-main text-lg-custom"
             >
               Sexuality
             </Text>
@@ -114,12 +108,7 @@ export default function InsertSex() {
               activeOpacity={1}
               onPress={() => handleSaveIdentity()}
             >
-              <Text
-                style={{
-                  ...globalStyles.mainTextColor,
-                  ...globalStyles.textMd,
-                }}
-              >
+              <Text className="text-main text-md-custom">
                 X
               </Text>
             </TouchableOpacity>
@@ -137,14 +126,10 @@ export default function InsertSex() {
                 <TouchableOpacity
                   key={i}
                   activeOpacity={1}
-                  style={{
-                    ...globalStyles.defaultTextInput,
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                  }}
+                  className="border border-input-border bg-input-bg text-main py-input-y px-input-x rounded-custom justify-between flex-row"
                   onPress={() => handleSelection(m)}
                 >
-                  <Text style={{ ...globalStyles.mainTextColor }}>{m}</Text>
+                  <Text className="text-main">{m}</Text>
                   <CheckRadio selected={sex === m} />
                 </TouchableOpacity>
               );
@@ -155,12 +140,7 @@ export default function InsertSex() {
             onPress={() => handleSaveIdentity(true)}
           >
             <GradientButton>
-              <Text
-                style={{
-                  textAlign: "center",
-                  ...globalStyles.mainTextColor,
-                }}
-              >
+              <Text className="text-center text-main">
                 Save
               </Text>
             </GradientButton>

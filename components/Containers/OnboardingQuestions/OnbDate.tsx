@@ -1,4 +1,3 @@
-import globalStyles from "@/globals/styles/globalStyles";
 import DatePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
@@ -18,33 +17,23 @@ export default function InsertBirth() {
 
   return (
     <View style={{ gap: 12 }}>
-      <Text
-        style={{
-          ...globalStyles.textLg,
-          ...globalStyles.mainTextColor,
-        }}
-      >
+      <Text className="text-lg-custom text-main">
         Please enter your date of birth
       </Text>
-      <Text
-        style={{
-          ...globalStyles.textXs,
-          ...globalStyles.mainTextColor,
-        }}
-      >
+      <Text className="text-xs-custom text-main">
         We use your birthday to confirm you meet the age requirement. Once
-        saved, it can't be changed.
+        saved, it can&apos;t be changed.
       </Text>
       <TouchableOpacity
         onPress={() => setOpenDate(!openDate)}
         activeOpacity={1}
-        style={{ ...globalStyles.defaultTextInput }}
+        className="border border-input-border bg-input-bg text-main py-input-y px-input-x rounded-custom"
       >
         <View style={{ flexDirection: "row" }}>
-          <Text style={{ ...globalStyles.mainTextColor }}>
+          <Text className="text-main">
             {selectedDate ? selectedDate.toLocaleDateString("es") : "Pick date"}
           </Text>
-          <Text style={{ ...globalStyles.mainTextColor, marginLeft: "auto" }}>
+          <Text className="text-main ml-auto">
             {">"}
           </Text>
         </View>

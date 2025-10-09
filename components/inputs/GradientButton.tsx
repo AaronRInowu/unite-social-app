@@ -1,19 +1,16 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { IcontainerProps } from "../../globals/interfaces/general.interface";
-import { btnGradient1, btnGradient2 } from "../../globals/styles/colors";
-import globalStyles from "../../globals/styles/globalStyles";
+import { IcontainerProps } from "../../global/interfaces/general.interface";
+import { gradientColors } from "../../global/styles/tailwindClasses";
 
 export default function GradientButton({ children, style }: IcontainerProps) {
-  const styles: Object = style ? style : {};
+  const styles: object = style ? style : {};
   return (
     <LinearGradient
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
-      colors={[btnGradient1, btnGradient2]}
-      style={{
-        ...globalStyles.regularBtnStyle,
-        ...styles,
-      }}
+      colors={gradientColors.button}
+      className="rounded-custom w-full p-btn"
+      style={styles}
     >
       {children}
     </LinearGradient>
