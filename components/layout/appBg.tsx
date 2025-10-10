@@ -18,7 +18,7 @@ export default function PageLayout({ children, style }: IcontainerProps) {
           flex: 1,
           width: "100%",
           paddingInline: 24,
-          paddingVertical: "25%",
+          paddingTop: "25%",
           ...styles,
         }}
       >
