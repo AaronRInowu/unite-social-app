@@ -9,10 +9,10 @@ import GradientButton from "@/components/Inputs/GradientButton";
 import PageLayout from "@/components/layout/appBg";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { ArrowLeft2 } from 'iconsax-react-nativejs';
+import { ArrowLeft2 } from "iconsax-react-nativejs";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { gradientColors } from "../global/styles/tailwindClasses";
+import { gradientColors } from "../../global/styles/tailwindClasses";
 export default function OnboardingPage() {
   const router = useRouter();
   const [onboardingStep, setOnboardingStep] = useState(1);
@@ -36,7 +36,7 @@ export default function OnboardingPage() {
         const newStep = prev + (type === "add" ? 1 : -1);
         return newStep;
       });
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const vibes = [
@@ -181,12 +181,12 @@ export default function OnboardingPage() {
         style={{ marginTop: "auto" }}
         onPress={() => handleSteps("add")}
       >
-        <GradientButton 
-        style={{
-          borderRadius: 12,
-          padding: 15,
-          width: '100%',
-        }}
+        <GradientButton
+          style={{
+            borderRadius: 12,
+            padding: 15,
+            width: "100%",
+          }}
         >
           <Text className="text-main text-xs-custom text-center font-satoshi-medium">
             Continue

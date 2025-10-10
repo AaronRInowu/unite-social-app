@@ -1,6 +1,6 @@
-import TansTackDevTools from '@/components/DevTools/TansTackDevTools';
-import { useCustomFonts } from '@/hooks/useFonts';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import TansTackDevTools from "@/components/DevTools/TansTackDevTools";
+import { useCustomFonts } from "@/hooks/useFonts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import "../global.css";
@@ -33,10 +33,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Stack>
-        <Stack.Screen
-          name="index"
-          options={{ headerShown: false }}
-        />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen
           name="signup"
           options={{
