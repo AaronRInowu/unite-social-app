@@ -16,6 +16,8 @@
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
     "@expo/vector-icons": "^15.0.2",
+    "@hookform/resolvers": "5.2.2",
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/datetimepicker": "8.4.4",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
@@ -43,6 +45,7 @@
     "nativewind": "^4.2.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-hook-form": "^7.64.0",
     "react-native": "0.81.4",
     "react-native-css-interop": "^0.2.1",
     "react-native-gesture-handler": "~2.28.0",
@@ -54,12 +57,15 @@
     "react-native-vector-icons": "^10.3.0",
     "react-native-web": "~0.21.0",
     "react-native-worklets": "0.5.1",
-    "yup": "^1.7.0"
+    "yup": "^1.7.0",
+    "zod": "^4.0.0",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.90.2",
     "@types/react": "~19.1.0",
     "@types/react-native-vector-icons": "^6.4.18",
+    "babel-plugin-module-resolver": "^5.0.2",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "prettier-plugin-tailwindcss": "^0.5.14",
