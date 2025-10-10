@@ -80,6 +80,7 @@ export default function OnboardingPage() {
     switch (onboardingStep) {
       case 1:
         return <InsertName />;
+      // return <StoryComponent />;
       case 2:
         return <InsertBirth />;
       case 3:
@@ -145,7 +146,12 @@ export default function OnboardingPage() {
   return (
     <PageLayout>
       <View
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          paddingBottom: 30,
+        }}
       >
         <TouchableOpacity activeOpacity={1} onPress={() => handleSteps("rest")}>
           <Text className="text-main text-xl-custom">
@@ -155,9 +161,9 @@ export default function OnboardingPage() {
         <View
           style={{
             borderRadius: 12,
-            width: "70%",
+            width: "50%",
             backgroundColor: "#ffffff10",
-            height: 6,
+            height: 8,
             marginInline: "auto",
           }}
         >
