@@ -5,6 +5,8 @@ import { colors } from "../../global/styles/tailwindClasses";
 interface IslideDown extends ModalProps {
   title?: string;
   modalSize?: number /* 0 - 100 */;
+  childrenContainerClass?: string;
+  closeColor?: string;
 }
 
 export default function SlideDownModal(props: IslideDown) {
@@ -14,6 +16,8 @@ export default function SlideDownModal(props: IslideDown) {
     animationType = "slide",
     backdropColor = "#00000040",
     children,
+    childrenContainerClass = "",
+    closeColor = "#ffffff",
     ...rest
   } = props;
 
@@ -40,20 +44,16 @@ export default function SlideDownModal(props: IslideDown) {
           overflow: "hidden",
           backgroundColor: colors.bgThird,
         }}
-        className="rounded-t-custom-xl"
+        className={`rounded-t-custom-xl ${childrenContainerClass}`}
       >
         <View style={{ flexDirection: "row" }}>
-          {title && (
-            <Text className="text-main text-lg-custom">
-              {title}
-            </Text>
-          )}
+          {title && <Text className="text-main text-lg-custom">{title}</Text>}
           <TouchableOpacity
             activeOpacity={1}
             onPress={rest.onRequestClose}
             style={{ marginLeft: "auto" }}
           >
-            <AntIcons name="close-circle" color={"#ffffff"} size={24} />
+            <AntIcons name="close-circle" color={closeColor} size={24} />
           </TouchableOpacity>
         </View>
         {children}

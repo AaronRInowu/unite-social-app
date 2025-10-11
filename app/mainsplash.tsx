@@ -1,11 +1,11 @@
+import { ShareApp } from "@/components/Containers/ShareApp/ShareApp";
 import PageLayout from "@/components/layout/appBg";
-import { NavigationBar } from "@/components/layout/NavigationBar";
-import { ScrollView, Text, View } from "react-native";
 
 export default function MainScreenPage() {
   return (
     <PageLayout style={{ gap: 12 }}>
-      <View>
+      <ShareApp />
+      {/* <View>
         <Text className="text-4xl text-white">Title</Text>
       </View>
       <ScrollView contentContainerClassName="gap-6 pb-[140px]">
@@ -24,7 +24,7 @@ export default function MainScreenPage() {
           );
         })}
       </ScrollView>
-      <NavigationBar />
+      <NavigationBar /> */}
     </PageLayout>
   );
 }
