@@ -33,7 +33,7 @@ export default function Index() {
           }}
         >
           <Link
-            href={"/signup"}
+            href={"/onboarding"}
             className="text-main text-xs-custom text-center font-satoshi-medium"
           >
             Join for free
@@ -46,7 +46,7 @@ export default function Index() {
           style={{ padding: 1, borderRadius: 12 }}
         >
           <Link
-            href={"/onboarding"}
+            href={"/signup"}
             style={{
               backgroundColor: colors.gradientEnd,
               borderRadius: 12,

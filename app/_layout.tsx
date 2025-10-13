@@ -32,8 +32,8 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
         <Stack.Screen
           name="signup"
           options={{
@@ -43,18 +43,7 @@ export default function RootLayout() {
             headerBackTitle: "Go back",
           }}
         />
-        <Stack.Screen
-          name="onboarding"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="mainsplash"
-          options={{
-            headerShown: false,
-          }}
-        />
+        <Stack.Screen name="onboarding" />
       </Stack>
 
       <TansTackDevTools queryClient={queryClient} />
