@@ -5,13 +5,14 @@ import { Link } from "expo-router";
 import React, { useState } from "react";
 import {
   Modal,
+  Platform,
   StyleProp,
   Text,
   TouchableOpacity,
   View,
   ViewStyle,
 } from "react-native";
-import Svg, { Circle, Defs, Mask, Rect } from "react-native-svg";
+import Svg, { ClipPath, Defs, Path, Rect } from "react-native-svg";
 import IonIcons from "react-native-vector-icons/Ionicons";
 import { RadialView } from "../Displays/RadialView";
 import GradientButton from "../Inputs/GradientButton";
@@ -20,6 +21,7 @@ export const NavigationBar = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedTab, setSelectedTab] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const isApple = Platform.OS === "ios";
 
   const modalRedirections = [
     { href: "", name: "New event" },
@@ -88,7 +90,7 @@ export const NavigationBar = () => {
       name: "Profile",
       href: "profile",
       icon: (
-        <View className="border-neutral-500 border-2 rounded-full bg-black w-[32px] aspect-square">
+        <View className="border-neutral-500 border-2 rounded-full bg-black w-[30px] aspect-square">
           {/* pfp */}
         </View>
       ),
@@ -126,7 +128,7 @@ export const NavigationBar = () => {
           const { paddingLeft, paddingRight, ...rest } = getStyles;
           const width = "100%";
           const height = 110;
-          const radius = "48%";
+          const radius = "48";
           // bg-[#1D1F3CCC]
           return m.href ? (
             <View
@@ -156,7 +158,9 @@ export const NavigationBar = () => {
                         maskElement={m.icon}
                         className="border broder-white"
                       >
-                        <GradientButton />
+                        <GradientButton
+                          style={{ padding: 0, width: 30, height: 30 }}
+                        />
                       </MaskedView>
                     ) : (
                       m.icon
@@ -169,7 +173,7 @@ export const NavigationBar = () => {
                           top: 0,
                         }}
                         start={{ opacity: "0" }}
-                        end={{ opacity: ".1" }}
+                        end={{ opacity: ".2" }}
                         width={"60%"}
                         height={"60%"}
                       />
@@ -194,34 +198,52 @@ export const NavigationBar = () => {
               }}
             >
               <BlurView
-                className="bg-white w-full h-[80%] absolute bottom-0 left-0"
+                className="bg-white w-full h-[59%] absolute bottom-0 left-0"
                 intensity={isLoaded ? 5 : 0}
+                tint="dark"
+                experimentalBlurMethod="dimezisBlurView"
+              />
+              <BlurView
+                className="bg-white w-full h-[14%] absolute bottom-[59%] left-0"
+                intensity={isLoaded ? 3 : 0}
+                tint="dark"
+                experimentalBlurMethod="dimezisBlurView"
+              />
+              <BlurView
+                className="bg-white w-full h-[7%] absolute bottom-[73%] opacity-60 left-0"
+                intensity={isLoaded ? 3 : 0}
                 tint="dark"
                 experimentalBlurMethod="dimezisBlurView"
               />
               <Svg width={width} height={height}>
                 <Defs>
-                  <Mask id="cutout">
-                    {/* Entire rectangle is visible (white) */}
-                    <Rect
-                      x="0"
-                      y="0"
-                      width={width}
-                      height={height}
-                      fill="#ffffffAA"
+                  <ClipPath id="cutout">
+                    {/* Use a path to draw a rectangle with a cut-out circle at the top center */}
+                    <Path
+                      d={`
+                        M0,0 
+                        H100
+                        V110 
+                        H0 
+                        Z
+                        M44,-2
+                        m-${radius},0 
+                        a${radius},${radius} 0 1,0 ${parseFloat(radius) * 2},0 
+                        a${radius},${radius} 0 1,0 -${parseFloat(radius) * 2},0
+                      `}
+                      fillRule="evenodd"
                     />
-                    {/* Circle is transparent (black) */}
-                    <Circle cx={"50%"} cy="0" r={radius} fill="black" />
-                  </Mask>
+                  </ClipPath>
                 </Defs>
-                {/* Apply the mask to the rectangle */}
+
                 <Rect
                   x="0"
                   y="0"
                   width={width}
                   height={height}
-                  fill="#1D1F3CCC"
-                  mask="url(#cutout)"
+                  fill="#1D1F3C"
+                  opacity={Platform.OS === "ios" ? 0.8 : 0.533}
+                  clipPath="url(#cutout)"
                 />
               </Svg>
             </View>
@@ -269,7 +291,9 @@ export const NavigationBar = () => {
           className="relative w-full h-full"
           onPress={() => setOpenModal(false)}
         >
-          <View className="w-[300px] rounded-2xl overflow-hidden left-[50%] -translate-x-[50%] bottom-[120px] absolute">
+          <View
+            className={`w-[300px] rounded-2xl overflow-hidden left-[50%] -translate-x-[50%] ${isApple ? "bottom-[160px]" : "bottom-[120px]"} absolute`}
+          >
             {modalRedirections.map((m, i) => {
               return (
                 <BlurView
@@ -280,6 +304,7 @@ export const NavigationBar = () => {
                 >
                   <Link
                     href={"/"}
+                    onPress={() => setOpenModal(false)}
                     className={`border-b text-center py-4 text-white ${i !== modalRedirections.length - 1 ? "border-b-neutral-500" : "border-b-transparent"} bg-[#1D1F3CAA]`}
                   >
                     {m.name}
