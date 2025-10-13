@@ -1,9 +1,10 @@
 import { ShareApp } from "@/components/Containers/ShareApp/ShareApp";
 import PageLayout from "@/components/layout/appBg";
+import { NavigationBar } from "@/components/layout/NavigationBar";
 
 export default function MainScreenPage() {
   return (
-    <PageLayout style={{ gap: 12 }}>
+    <PageLayout style={{ gap: 12, paddingBottom: 0 }}>
       <ShareApp />
       {/* <View>
         <Text className="text-4xl text-white">Title</Text>
@@ -23,8 +24,8 @@ export default function MainScreenPage() {
             </View>
           );
         })}
-      </ScrollView>
-      <NavigationBar /> */}
+      </ScrollView> */}
+      <NavigationBar />
     </PageLayout>
   );
 }
