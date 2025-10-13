@@ -3,7 +3,14 @@ import SlideDownModal from "@/components/Modals/SlideDownModal";
 import IonIcons from "@expo/vector-icons/Ionicons";
 import * as Clipboard from "expo-clipboard";
 import { useState } from "react";
-import { FlatList, Linking, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Linking,
+  Share,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export const ShareApp = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -41,25 +48,41 @@ export const ShareApp = () => {
     if (value && sharingApps.some((s) => s.value === value)) {
       if (value === "mail") {
         Linking.openURL(
-          "mailto:a@a.dev?subject=Join me in unite!&body=Here is my link: no se"
+          "mailto:?subject=Join me in unite!&body=Here is my link: no se"
         );
+        return;
       }
       if (value === "messages") {
-        Linking.openURL(
-          "sms:a@a.dev?subject=Join me in unite!&body=Here is my link: no se"
-        );
+        Linking.openURL("sms:?body=Join me in unite!, Here is my link: no se");
+        return;
       }
       if (value === "wats") {
         Linking.openURL(
           "whatsapp://send?text=Join me in unite, Here is my link: no se"
         );
+        return;
       }
-      //   Platform.OS === "ios"
-      //     ? ""
-      //     : Linking.openURL("content://com.android.contacts/contacts");
+      onShare();
+      return;
     } else {
       setOpenModal(true);
       await Clipboard.setStringAsync("Unite!");
+      return;
+    }
+  };
+
+  const onShare = async () => {
+    try {
+      await Share.share(
+        {
+          message: "Join me in Unite!: Here is my link: nose",
+        },
+        {
+          excludedActivityTypes: [], //que no salgan todas las aplicaciones
+        }
+      );
+    } catch (error) {
+      console.error(error);
     }
   };
 
