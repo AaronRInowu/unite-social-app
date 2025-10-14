@@ -23,7 +23,7 @@ export const ConnectionScreen = () => {
                 {f}
               </Text>
               <GradientButton
-                className="absolute p-0 !h-[2px] top-[100%]"
+                className="absolute !p-0 !h-[2px] top-[100%]"
                 colors={
                   selectedFilter === f
                     ? undefined
@@ -49,7 +49,7 @@ export const ConnectionScreen = () => {
                 className="rounded-xl overflow-hidden"
               >
                 <GradientButton>
-                  <Text className="text-white">Message {i}</Text>
+                  <Text className="text-white">Message</Text>
                 </GradientButton>
               </TouchableOpacity>
             </UserViewContainer>

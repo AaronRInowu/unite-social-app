@@ -1,7 +1,7 @@
 import { CheckSwitch } from "@/components/Inputs/CheckSwitch";
 import GradientButton from "@/components/Inputs/GradientButton";
 import { tempuser } from "@/global/interfaces/general.interface";
-import { retrieveGeneral } from "@/services/general.axios";
+import { retrieveGeneral } from "@/services/restapi/general.axios";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Ocitcons from "@expo/vector-icons/Octicons";
 import { Link } from "expo-router";
