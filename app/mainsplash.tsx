@@ -1,3 +1,4 @@
+import { ConnectionScreen } from "@/components/Containers/ConnectionScreen/ConnectionScreen";
 import { MyProfileScreen } from "@/components/Containers/MyProfile/MyProfile";
 import { ShareApp } from "@/components/Containers/ShareApp/ShareApp";
 import GradientButton from "@/components/Inputs/GradientButton";
@@ -10,7 +11,7 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function MainScreenPage() {
   const [openScreen, setOpenScreen] = useState("");
-  const currentlyWorking = ["share", "navbar", "profile"];
+  const currentlyWorking = ["share", "navbar", "profile", "connections"];
   return (
     <PageLayout style={{ gap: 12, paddingBottom: 0 }}>
       <View className="flex-row items-center gap-3">
@@ -49,6 +50,7 @@ export default function MainScreenPage() {
         })
       ) : (
         <>
+          {openScreen === "connections" && <ConnectionScreen />}
           {openScreen === "profile" && <MyProfileScreen />}
           {openScreen === "share" && <ShareApp />}
           {openScreen === "navbar" && (
