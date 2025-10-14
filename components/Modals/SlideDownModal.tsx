@@ -1,4 +1,11 @@
-import { Modal, ModalProps, Text, TouchableOpacity, View } from "react-native";
+import {
+  Modal,
+  ModalProps,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 import AntIcons from "react-native-vector-icons/AntDesign";
 import { colors } from "../../global/styles/tailwindClasses";
 
@@ -7,6 +14,7 @@ interface IslideDown extends ModalProps {
   modalSize?: number /* 0 - 100 */;
   childrenContainerClass?: string;
   closeColor?: string;
+  containerStyle?: ViewStyle;
 }
 
 export default function SlideDownModal(props: IslideDown) {
@@ -18,6 +26,7 @@ export default function SlideDownModal(props: IslideDown) {
     children,
     childrenContainerClass = "",
     closeColor = "#ffffff",
+    containerStyle,
     ...rest
   } = props;
 
@@ -40,9 +49,12 @@ export default function SlideDownModal(props: IslideDown) {
           marginTop: "auto",
           height: `${modalSize}%`,
           maxHeight: `${modalSize}%`,
-          padding: 24,
+          paddingHorizontal: 24,
+          paddingBottom: 24,
+          paddingTop: 16,
           overflow: "hidden",
           backgroundColor: colors.bgThird,
+          ...(containerStyle ?? {}),
         }}
         className={`rounded-t-custom-xl ${childrenContainerClass}`}
       >

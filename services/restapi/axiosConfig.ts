@@ -21,8 +21,6 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-// Interceptor para logs de response
 axiosInstance.interceptors.response.use(
   (response) => {
     // console.log('✅ Response:', response.status, response.config.url);

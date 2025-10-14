@@ -26,7 +26,7 @@ module.exports = {
         // Colores de utilidad
         "main-text": "#ffffff",
         "input-border": "#ffffff40",
-        "input-bg": "#ffffff20",
+        "input-bg": "#ffffff1A",
         debug: "#f00",
       },
       textColor: {
@@ -36,7 +36,7 @@ module.exports = {
         "btn-secondary": "#7B3BCC",
       },
       backgroundColor: {
-        "input-bg": "#ffffff20",
+        "input-bg": "#ffffff1A",
         "bg-third": "#22244B",
         "gradient-1": "rgb(21,3,52)",
         "gradient-2": "rgb(24,7,64)",

@@ -40,13 +40,6 @@ export default function InsertSex() {
   return (
     <>
       <View style={{ gap: 12 }}>
-        <Text className="text-main text-xl-custom">
-          Select your sexuality
-        </Text>
-        <Text className="text-main">
-          Sexuality can be comlpex, evolving, and beautifully unique. Choose
-          what reesonates with you in this moment.
-        </Text>
         <ScrollView contentContainerStyle={{ gap: 8 }}>
           {genderSelection.map((m, i) => {
             const isSelected = m === "Other" ? extras.includes(sex) : sex === m;

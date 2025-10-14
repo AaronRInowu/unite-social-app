@@ -1,5 +1,5 @@
 import TansTackDevTools from "@/components/DevTools/TansTackDevTools";
-import { useCustomFonts } from "@/hooks/useFonts";
+import { useCustomFonts } from "@/hooks/useFonts.hook";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
@@ -16,10 +16,8 @@ const queryClient = new QueryClient({
     },
   },
 });
-
 export default function RootLayout() {
   const fontsLoaded = useCustomFonts();
-
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync();

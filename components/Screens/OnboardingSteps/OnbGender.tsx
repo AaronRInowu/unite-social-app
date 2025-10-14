@@ -48,13 +48,6 @@ export default function InsertGender() {
   return (
     <>
       <View style={{ gap: 12 }}>
-        <Text className="text-main text-xl-custom">
-          Which gender best describes you?
-        </Text>
-        <Text className="text-main">
-          We recognize that gender is fluid and personal. Choose what best
-          represents you today.
-        </Text>
         <View style={{ gap: 8 }}>
           {genderSelection.map((m, i) => {
             const isSelected = selectedGender === m.value;
