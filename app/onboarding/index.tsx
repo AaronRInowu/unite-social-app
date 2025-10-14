@@ -2,10 +2,21 @@ import GradientButton from "@/components/Inputs/GradientButton";
 import PageLayout from "@/components/layout/appBg";
 import StepContainer from "@/components/Screens/OnboardingSteps/StepContainer";
 import { stateMachine } from "@/onboarding/machine/stateMachine.workflow";
-import useOnboardingStore, { selectStep, selectTotal } from "@/store/onboarding.storage";
+import useOnboardingStore, {
+  selectStep,
+  selectTotal,
+} from "@/store/onboarding.storage";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Keyboard, KeyboardAvoidingView, Platform, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function OnboardingPage() {
@@ -32,7 +43,7 @@ export default function OnboardingPage() {
           return;
         }
       }
-    } catch { }
+    } catch {}
   };
 
   // Sincroniza totalSteps con la state machine
@@ -46,8 +57,10 @@ export default function OnboardingPage() {
 
   // Detectar teclado para ajustar paddings superiores
   React.useEffect(() => {
-    const showEvt = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
-    const hideEvt = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
+    const showEvt =
+      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
+    const hideEvt =
+      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
     const showSub = Keyboard.addListener(showEvt, () => setKbVisible(true));
     const hideSub = Keyboard.addListener(hideEvt, () => setKbVisible(false));
     return () => {
@@ -72,7 +85,6 @@ export default function OnboardingPage() {
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={{ flex: 1 }}>
-
             {returnStep()}
             {/* Fixed footer (outside the ScrollView) */}
             <TouchableOpacity
