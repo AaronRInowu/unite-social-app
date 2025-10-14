@@ -76,7 +76,7 @@ export default function Index() {
             }}
             className="text-main text-xs-custom font-satoshi-medium"
           >
-            Check navbar
+            Test pantallas
           </Link>
         </LinearGradient>
       </View>
