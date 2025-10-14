@@ -4,14 +4,25 @@ import { ArrowLeft2 } from 'iconsax-react-nativejs';
 import { Text, TouchableOpacity, View } from "react-native";
 
 
-export default function OnbParentContainer({ children, title, subtitle,
-    handleSteps, onboardingStep, totalSteps, viewProgressBar = true }:
-    {
-        children: React.ReactNode, title: string, subtitle: string,
-        handleSteps: (action: "next" | "rest") => void, onboardingStep: number, totalSteps: number, viewProgressBar?: boolean
-    }) {
+export default function OnbParentContainer({
+    children,
+    title,
+    subtitle,
+    handleSteps,
+    onboardingStep,
+    totalSteps,
+    viewProgressBar = true,
+}: {
+    children: React.ReactNode;
+    title: string;
+    subtitle?: string;
+    handleSteps: (type: "rest" | "add") => Promise<void>;
+    onboardingStep: number;
+    totalSteps: number;
+    viewProgressBar?: boolean;
+}) {
     return (
-        <>
+        <View className="flex-1 pt-12" style={{ gap: 32 }}>
             {viewProgressBar && (
                 <View
                     style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
@@ -26,7 +37,7 @@ export default function OnbParentContainer({ children, title, subtitle,
                             borderRadius: 12,
                             width: "70%",
                             backgroundColor: "#ffffff10",
-                            height: 6,
+                            height: 9,
                             marginInline: "auto",
                         }}
                     >
@@ -45,16 +56,13 @@ export default function OnbParentContainer({ children, title, subtitle,
                     </View>
                 </View>
             )}
-
-            <View style={{ gap: 12 }}>
-                <Text className="text-main text-xl-custom">
+            <View style={{ gap: 12, paddingBottom: 56 }}>
+                <Text className="text-main text-lg-custom font-satoshi-bold">
                     {title}
                 </Text>
-                <Text className="text-main">
-                    {subtitle}
-                </Text>
+                { subtitle && <Text className="text-main">{subtitle}</Text>}
                 {children}
             </View>
-        </>
+        </View>
     );
 }
