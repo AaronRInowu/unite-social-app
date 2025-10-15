@@ -60,7 +60,7 @@ export default function OnbParentContainer({
                 <Text className="text-main text-lg-custom font-satoshi-bold">
                     {title}
                 </Text>
-                { subtitle && <Text className="text-main">{subtitle}</Text>}
+                { subtitle && <Text className="text-main text-xs-custom font-satoshi-bold">{subtitle}</Text>}
                 {children}
             </View>
         </View>
