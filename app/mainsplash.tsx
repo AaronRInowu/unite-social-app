@@ -1,17 +1,17 @@
-import { ConnectionScreen } from "@/components/Containers/ConnectionScreen/ConnectionScreen";
-import { MyProfileScreen } from "@/components/Containers/MyProfile/MyProfile";
 import { ShareApp } from "@/components/Containers/ShareApp/ShareApp";
-import GradientButton from "@/components/Inputs/GradientButton";
+import { UserList } from "@/components/DevTools/UserList/UserList";
 import PageLayout from "@/components/layout/appBg";
 import { NavigationBar } from "@/components/layout/NavigationBar";
 import { gradientColors } from "@/global/styles/tailwindClasses";
 import { LinearGradient } from "expo-linear-gradient";
+import { ArrowLeft2 } from "iconsax-react-nativejs";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function MainScreenPage() {
   const [openScreen, setOpenScreen] = useState("");
-  const currentlyWorking = ["share", "navbar", "profile", "connections"];
+  const currentlyWorking = ["share", "navbar", "userScreens"];
+
   return (
     <PageLayout style={{ gap: 12, paddingBottom: 0 }}>
       <View className="flex-row items-center gap-3">
@@ -20,9 +20,7 @@ export default function MainScreenPage() {
             onPress={() => setOpenScreen("")}
             className="w-[40px] rounded-xl overflow-hidden"
           >
-            <GradientButton>
-              <Text className="text-white">{"<"}</Text>
-            </GradientButton>
+            <ArrowLeft2 color="#fff" size={20} />
           </TouchableOpacity>
         )}
         <Text className="text-4xl text-white">{openScreen}</Text>
@@ -50,8 +48,7 @@ export default function MainScreenPage() {
         })
       ) : (
         <>
-          {openScreen === "connections" && <ConnectionScreen />}
-          {openScreen === "profile" && <MyProfileScreen />}
+          {openScreen === "userScreens" && <UserList />}
           {openScreen === "share" && <ShareApp />}
           {openScreen === "navbar" && (
             <>

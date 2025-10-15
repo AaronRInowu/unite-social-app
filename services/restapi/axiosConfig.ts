@@ -27,6 +27,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
+    // console.error(error.response.message);
     console.error("❌ Response Error:", error.message);
     if (error.code === "ECONNABORTED") {
       console.error("⏱️ Request timeout");

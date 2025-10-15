@@ -1,4 +1,4 @@
-import { tempuser } from "@/global/interfaces/general.interface";
+import { User } from "@/global/interfaces/users.interface";
 import { ReactNode } from "react";
 import { Text, View } from "react-native";
 
@@ -7,7 +7,7 @@ export const UserViewContainer = ({
   classnames = {},
   children,
 }: {
-  user?: Partial<tempuser>;
+  user?: Partial<User>;
   children?: ReactNode;
   classnames?: {
     container?: string;
