@@ -1,8 +1,8 @@
+import { GalleryTips } from "@/components/Containers/GalleryTips/GalleryTips";
 import { useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import AntIcons from "react-native-vector-icons/AntDesign";
 import AddImage from "../../Inputs/AddImage";
-import GradientButton from "../../Inputs/GradientButton";
 import SlideDownModal from "../../Modals/SlideDownModal";
 
 export default function InsertGallery() {
@@ -30,9 +30,7 @@ export default function InsertGallery() {
           onPress={() => setInfoModal(true)}
         >
           <AntIcons name="info-circle" size={20} color={"#fff"} />
-          <Text className="text-main">
-            Need help choosing your photos
-          </Text>
+          <Text className="text-main">Need help choosing your photos</Text>
         </TouchableOpacity>
       </View>
       <SlideDownModal
@@ -40,41 +38,7 @@ export default function InsertGallery() {
         visible={infoModal}
         title="Photo upload tips"
       >
-        <ScrollView contentContainerStyle={{ gap: 24 }}>
-          <Text className="text-main">
-            Show your face clearly
-          </Text>
-          <Text className="text-main">
-            Use recent, clear photos where your face is easy to see -- skip the
-            filters, sunglasses, or anything that hides who you are.
-          </Text>
-          <Text className="text-main">
-            Use only your own photos
-          </Text>
-          <Text className="text-main">
-            Make sure it&apos;s really you -- no group shots where it&apos;s hard to tell,
-            no celebrities, and no fake profiles.
-          </Text>
-          <Text className="text-main">
-            Keep it respectful and real
-          </Text>
-          <Text className="text-main">
-            Avoid offensive or explicit content. Great photos show your
-            personality -- like doing something you love or enjoying everyday
-            moments.
-          </Text>
-        </ScrollView>
-        <TouchableOpacity
-          className="rounded-custom w-full text-center p-btn"
-          activeOpacity={1}
-          onPress={() => setInfoModal(false)}
-        >
-          <GradientButton>
-            <Text className="text-main text-center">
-              Okay, got it
-            </Text>
-          </GradientButton>
-        </TouchableOpacity>
+        <GalleryTips closeModal={() => setInfoModal(false)} />
       </SlideDownModal>
     </>
   );

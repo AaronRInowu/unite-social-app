@@ -59,6 +59,26 @@ export default function Index() {
             Sign in
           </Link>
         </LinearGradient>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          colors={gradientColors.button}
+          style={{ padding: 1, borderRadius: 12 }}
+        >
+          <Link
+            href={"/mainsplash"}
+            style={{
+              backgroundColor: colors.gradientEnd,
+              borderRadius: 12,
+              padding: 15,
+              width: "100%",
+              textAlign: "center",
+            }}
+            className="text-main text-xs-custom font-satoshi-medium"
+          >
+            Test pantallas
+          </Link>
+        </LinearGradient>
       </View>
     </PageLayout>
   );

@@ -3,7 +3,9 @@ import { View } from "react-native";
 import { IcontainerProps } from "../../global/interfaces/general.interface";
 import { colors, gradientColors } from "../../global/styles/tailwindClasses";
 
-export default function PageLayout({ children, style }: IcontainerProps) {
+interface IpageLay extends IcontainerProps {}
+
+export default function PageLayout({ children, style }: IpageLay) {
   const styles: object = style ? style : {};
   return (
     <View
@@ -18,7 +20,8 @@ export default function PageLayout({ children, style }: IcontainerProps) {
           flex: 1,
           width: "100%",
           paddingInline: 24,
-          paddingVertical: "25%",
+          paddingTop: "25%",
+          paddingBottom: "25%",
           ...styles,
         }}
       >
