@@ -44,7 +44,6 @@ export default function RootLayout() {
         <Stack.Screen name="onboarding" />
         <Stack.Screen name="(tabs)" />
       </Stack>
-
       <TansTackDevTools queryClient={queryClient} />
     </QueryClientProvider>
   );

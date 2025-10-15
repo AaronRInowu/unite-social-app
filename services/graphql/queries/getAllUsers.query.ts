@@ -1,9 +1,16 @@
+import { gql } from 'graphql-request';
 
-export const GET_USERS = `
+
+// Define your GraphQL query
+export const GET_POSTS_QUERY = gql`
   query {
-    users {
+  Users {
+    docs {
+      firstName
+      lastName
+      phone
       id
-      name
     }
   }
+}
 `;

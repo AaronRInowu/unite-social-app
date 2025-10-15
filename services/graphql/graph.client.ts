@@ -4,8 +4,9 @@ export function createGraphQLClient(endpoint: string, headers?: Record<string, s
   return new GraphQLClient(endpoint, { headers });
 }
 
-export function fetcher(client: GraphQLClient) {
+export function fetcher<T>(client: GraphQLClient) {
   return async (query: string, variables?: Record<string, any>) => {
-    return client.request(query, variables);
+    console.log("Executing GraphQL query:", query, "with variables:", variables);
+    return client.request<T>(query, variables);
   };
 }
