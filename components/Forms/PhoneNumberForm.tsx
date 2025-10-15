@@ -9,7 +9,6 @@ import PhoneInput from "react-native-phone-number-input";
 
 
 export default function PhoneNumberForm({ onValidChange, registerSubmit }: { onValidChange?: (v: boolean) => void; registerSubmit?: (fn: () => void) => void }) {
-
   const { mutate } = useSendOtpMessage({
     onSuccess: () => {
         const { next,totalSteps } = useOnboardingStore.getState();
@@ -20,6 +19,7 @@ export default function PhoneNumberForm({ onValidChange, registerSubmit }: { onV
       console.log("error",error)
     }
   });
+
 
   const {
     control,
@@ -100,10 +100,9 @@ useEffect(() => {
               textInputStyle={{ color: "#ffffff80" }}
               flagButtonStyle={{ backgroundColor: "transparent" }}
             />
-
             <Text
-              style={{ color: 'rgba(255,255,255,0.7)' }}
-              className="text-xs font-satoshi-medium text-justify"
+              style={{ color: 'white' }}
+              className="font-satoshi-medium text-justify text-sm"
             >
               By continuing, you agree to our Terms of Service and Privacy Policy.
               Your phone number is just for verification and keeping your account

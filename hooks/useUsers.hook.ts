@@ -1,16 +1,17 @@
 import { User } from '@/global/interfaces/users.interface';
 import { createGraphQLClient, fetcher } from '@/services/graphql/graph.client';
-import { GET_USERS } from '@/services/graphql/queries/getAllUsers.query';
+import { GET_POSTS_QUERY } from '@/services/graphql/queries/getAllUsers.query';
 import { retrieveGeneral } from '@/services/restapi/general.axios';
 import { updateUser } from '@/services/restapi/users/users.axios';
 import { useMutation, UseMutationOptions, useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Hook para obtener usuarios
 export const useUsers = () => {
-  const client = createGraphQLClient(`${process.env.EXPO_PUBLIC_API_URL!}/users`);
+  const client = createGraphQLClient(`${process.env.EXPO_PUBLIC_API_URL!}/graphql`);
+  console.log("GraphQL Client created with endpoint:", `${process.env.EXPO_PUBLIC_API_URL!}/graphql`);
   return useQuery({
     queryKey: ['users'],
-    queryFn: () => fetcher(client)(GET_USERS),
+    queryFn: () => fetcher<{ Users: { docs: Partial<User>[] } }>(client)(GET_POSTS_QUERY), // Cambia el ID según sea necesario
     retry: 2,
     retryDelay: 1000,
     refetchOnWindowFocus: false,
