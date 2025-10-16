@@ -1,10 +1,19 @@
-import { Modal, ModalProps, Text, TouchableOpacity, View } from "react-native";
+import {
+  Modal,
+  ModalProps,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 import AntIcons from "react-native-vector-icons/AntDesign";
-import { colors } from "../../global/styles/tailwindClasses";
 
 interface IslideDown extends ModalProps {
   title?: string;
   modalSize?: number /* 0 - 100 */;
+  childrenContainerClass?: string;
+  closeColor?: string;
+  containerStyle?: ViewStyle;
 }
 
 export default function SlideDownModal(props: IslideDown) {
@@ -12,8 +21,11 @@ export default function SlideDownModal(props: IslideDown) {
     modalSize = 75,
     title,
     animationType = "slide",
-    backdropColor = "#00000040",
+    backdropColor = "#00000070",
     children,
+    childrenContainerClass = "",
+    closeColor = "#ffffff",
+    containerStyle,
     ...rest
   } = props;
 
@@ -22,12 +34,14 @@ export default function SlideDownModal(props: IslideDown) {
     <Modal
       animationType={animationType}
       backdropColor={backdropColor}
+      transparent={true}
       {...rest}
     >
       <TouchableOpacity
         activeOpacity={1}
         style={{
           height: `${backdropSize}%`,
+          backgroundColor: backdropColor,
         }}
         onPress={rest.onRequestClose}
       />
@@ -36,24 +50,23 @@ export default function SlideDownModal(props: IslideDown) {
           marginTop: "auto",
           height: `${modalSize}%`,
           maxHeight: `${modalSize}%`,
-          padding: 24,
+          paddingHorizontal: 24,
+          paddingBottom: 24,
+          paddingTop: 16,
           overflow: "hidden",
-          backgroundColor: colors.bgThird,
+          // backgroundColor: colors.bgThird,
+          ...(containerStyle ?? {}),
         }}
-        className="rounded-t-custom-xl"
+        className={`rounded-t-custom-xl ${childrenContainerClass}`}
       >
         <View style={{ flexDirection: "row" }}>
-          {title && (
-            <Text className="text-main text-lg-custom">
-              {title}
-            </Text>
-          )}
+          {title && <Text className="text-main text-lg-custom">{title}</Text>}
           <TouchableOpacity
             activeOpacity={1}
             onPress={rest.onRequestClose}
             style={{ marginLeft: "auto" }}
           >
-            <AntIcons name="close-circle" color={"#ffffff"} size={24} />
+            <AntIcons name="close" color={closeColor} size={18} />
           </TouchableOpacity>
         </View>
         {children}
