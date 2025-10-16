@@ -1,11 +1,16 @@
 import TansTackDevTools from "@/components/DevTools/TansTackDevTools";
 import { useCustomFonts } from "@/hooks/useFonts.hook";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { SplashScreen, Stack } from "expo-router";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "../global.css";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.setOptions({
+  duration: 15000,
+  fade: true,
+});
+
 SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient({
@@ -42,6 +47,7 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen name="onboarding" />
+        <Stack.Screen name="(tabs)" />
       </Stack>
       <TansTackDevTools queryClient={queryClient} />
     </QueryClientProvider>
