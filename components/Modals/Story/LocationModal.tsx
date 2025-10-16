@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Text, TouchableOpacity, View } from "react-native";
-import GooglePlacesTextInput from "react-native-google-places-textinput";
 import z from "zod";
 import SlideDownModal from "../SlideDownModal";
 
@@ -52,10 +51,10 @@ export default function LocationNameModal({ open, close, value }: Modal) {
           Find your city
         </Text>
         <View className="bg-input-bg rounded-custom">
-          <GooglePlacesTextInput
+          {/* <GooglePlacesTextInput
             apiKey="AIzaSyAMgn7Ey3mTwa6ijXmAFu2eXFQnI1EYyaY"
             onPlaceSelect={handlePlaceSelect}
-          />
+          /> */}
           {/* <Controller
             control={control}
             render={({

@@ -1,18 +1,21 @@
 import FullNameModal from "@/components/Modals/Story/FullNameModal";
 import ListModal from "@/components/Modals/Story/ListModal";
 import LocationNameModal from "@/components/Modals/Story/LocationModal";
+import { useVibes } from "@/hooks/useLists.hook";
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import StoryFieldComponent from "./StoryFieldComponent";
+import StoryFieldComponent from "../../Containers/StoryComponent/StoryFieldComponent";
 
 type CustomFields = {
   type: string;
   value: string | string[];
   deg?: number;
   modal?: string;
+  onValidChange?: (value: boolean) => void;
+  registerSubmit?: (fn: () => void) => void;
 };
 
-export default function StoryComponent() {
+export default function InsertStory() {
   const [isOpenFullNameModal, setIsOpenFullNameModal] = useState(false);
   const [isOpenLocationModal, setIsOpenLocationModal] = useState(false);
   const [isOpenListModal, setIsOpenListModal] = useState(false);
@@ -87,26 +90,30 @@ export default function StoryComponent() {
     ...returnEvents(),
   ]);
 
+  const vibes = useVibes();
+  console.log("vibes", vibes);
   const callList = async (type: string) => {
     try {
       //  const list = await retrieveGeneral("/")
       switch (type) {
         case "vibes":
-          const vibes = [
-            "Adventurous  🗺️",
-            "Soulful 🌌",
-            "Chill 😌",
-            "Adventurous  🗺️",
-            "Soulful 🌌",
-            "Chill 😌",
-            "Adventurous  🗺️",
-            "Soulful 🌌",
-            "Chill 😌",
-            "Adventurous  🗺️",
-            "Soulful 🌌",
-            "Chill 😌",
-          ];
-          setValues(vibes);
+          console.log(1);
+
+          // const vibes = [
+          //   "Adventurous  🗺️",
+          //   "Soulful 🌌",
+          //   "Chill 😌",
+          //   "Adventurous  🗺️",
+          //   "Soulful 🌌",
+          //   "Chill 😌",
+          //   "Adventurous  🗺️",
+          //   "Soulful 🌌",
+          //   "Chill 😌",
+          //   "Adventurous  🗺️",
+          //   "Soulful 🌌",
+          //   "Chill 😌",
+          // ];
+          // setValues(vibes);
           break;
         case "values":
           const values = [
@@ -161,15 +168,6 @@ export default function StoryComponent() {
 
   return (
     <View style={{ flexGrow: 1 }} className="flex flex-col gap-[20px]">
-      <Text className="text-main font-bold text-[32px] ">
-        Let’s start your first story!
-      </Text>
-      <Text className="font-satoshi-bold text-[16px] text-main">
-        We built your story based on what you{"\n"}
-        shared, but you can change it to make it fit{"\n"}
-        you better.
-      </Text>
-
       <View className="flex-row gap-[10px] items-center">
         <Text className="text-[#FFF6A3] font-satoshi-bold text-[16px] py-5">
           Tap each

@@ -1,6 +1,12 @@
-import { Modal, ModalProps, Text, TouchableOpacity, View, ViewStyle } from "react-native";
+import {
+  Modal,
+  ModalProps,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 import AntIcons from "react-native-vector-icons/AntDesign";
-import { colors } from "../../global/styles/tailwindClasses";
 
 interface IslideDown extends ModalProps {
   title?: string;
@@ -15,7 +21,7 @@ export default function SlideDownModal(props: IslideDown) {
     modalSize = 75,
     title,
     animationType = "slide",
-    backdropColor = "#00000040",
+    backdropColor = "#00000070",
     children,
     childrenContainerClass = "",
     closeColor = "#ffffff",
@@ -28,12 +34,14 @@ export default function SlideDownModal(props: IslideDown) {
     <Modal
       animationType={animationType}
       backdropColor={backdropColor}
+      transparent={true}
       {...rest}
     >
       <TouchableOpacity
         activeOpacity={1}
         style={{
           height: `${backdropSize}%`,
+          backgroundColor: backdropColor,
         }}
         onPress={rest.onRequestClose}
       />
@@ -46,7 +54,7 @@ export default function SlideDownModal(props: IslideDown) {
           paddingBottom: 24,
           paddingTop: 16,
           overflow: "hidden",
-          backgroundColor: colors.bgThird,
+          // backgroundColor: colors.bgThird,
           ...(containerStyle ?? {}),
         }}
         className={`rounded-t-custom-xl ${childrenContainerClass}`}
@@ -58,7 +66,7 @@ export default function SlideDownModal(props: IslideDown) {
             onPress={rest.onRequestClose}
             style={{ marginLeft: "auto" }}
           >
-            <AntIcons name="close-circle" color={closeColor} size={24} />
+            <AntIcons name="close" color={closeColor} size={18} />
           </TouchableOpacity>
         </View>
         {children}

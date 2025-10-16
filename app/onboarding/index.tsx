@@ -27,6 +27,7 @@ export default function OnboardingPage() {
   const canContinue = useOnboardingStore((s) => s.canContinue);
   const submitAction = useOnboardingStore((s) => s.submitAction);
   const next = useOnboardingStore((s) => s.next);
+  const prev = useOnboardingStore((s) => s.prev);
   const [kbVisible, setKbVisible] = React.useState(false);
   const insets = useSafeAreaInsets();
 
@@ -38,9 +39,11 @@ export default function OnboardingPage() {
           return;
         }
       } else {
-        if (type === "rest" && step === 1) {
+        if (type === "rest" && step == 1) {
           router.back();
           return;
+        } else {
+          prev();
         }
       }
     } catch {}

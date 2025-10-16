@@ -2,62 +2,68 @@ import { create } from "zustand";
 
 // Tipos del estado y acciones del onboarding
 export type OnboardingStore = {
-	// Estado
-	step: number;
-	totalSteps: number;
-	canContinue: boolean;
-	submitAction: (() => void) | null;
-	// Acciones
-	next: () => void;
-	prev: () => void;
-	reset: () => void;
-	setStep: (step: number) => void;
-	setTotalSteps: (total: number) => void;
-		setCanContinue: (value: boolean) => void;
-		setSubmitAction: (fn: (() => void) | null) => void;
+  // Estado
+  step: number;
+  totalSteps: number;
+  canContinue: boolean;
+  phone: string;
+  submitAction: (() => void) | null;
+  // Acciones
+  next: () => void;
+  prev: () => void;
+  reset: () => void;
+  setStep: (step: number) => void;
+  setPhone: (phone: string) => void;
+  setTotalSteps: (total: number) => void;
+  setCanContinue: (value: boolean) => void;
+  setSubmitAction: (fn: (() => void) | null) => void;
 };
 
 // Hook principal del store
 // - Pensado para sustituir un Context y manejar: next, prev, reset, setStep
 const useOnboardingStore = create<OnboardingStore>()(
-	/*persist( persistencia temporalmente eliminada */
-		(set, get) => ({
-			step: 1,
-			totalSteps: 10,
-			canContinue: true,
-			submitAction: null,
+  /*persist( persistencia temporalmente eliminada */
+  (set, get) => ({
+    step: 1,
+    totalSteps: 10,
+    canContinue: true,
+    submitAction: null,
+    phone: "",
+    next: () => {
+      const { step, totalSteps } = get();
+      if (step < totalSteps) {
+        set({ step: step + 1 });
+      }
+    },
 
-			next: () => {
-				const { step, totalSteps } = get();
-				if (step < totalSteps) {
-					set({ step: step + 1 });
-				}
-			},
+    prev: () => {
+      const { step } = get();
+      if (step > 1) {
+        set({ step: step - 1 });
+      }
+    },
 
-			prev: () => {
-				const { step } = get();
-				if (step > 1) {
-					set({ step: step - 1 });
-				}
-			},
+    reset: () => set({ step: 1 }),
 
-			reset: () => set({ step: 1 }),
+    setStep: (newStep) => {
+      const { totalSteps } = get();
+      const clamped = Math.max(1, Math.min(totalSteps, Math.floor(newStep)));
+      set({ step: clamped });
+    },
 
-			setStep: (newStep) => {
-				const { totalSteps } = get();
-				const clamped = Math.max(1, Math.min(totalSteps, Math.floor(newStep)));
-				set({ step: clamped });
-			},
+    setPhone: (newPhone) => {
+      set({ phone: newPhone });
+    },
 
-			setTotalSteps: (total) => {
-				const safeTotal = Math.max(1, Math.floor(total));
-				const { step } = get();
-				set({ totalSteps: safeTotal, step: Math.min(step, safeTotal) });
-			},
-			setCanContinue: (value) => set({ canContinue: value }),
-			setSubmitAction: (fn) => set({ submitAction: fn }),
-		}),
-		/*{
+    setTotalSteps: (total) => {
+      const safeTotal = Math.max(1, Math.floor(total));
+      const { step } = get();
+      set({ totalSteps: safeTotal, step: Math.min(step, safeTotal) });
+    },
+    setCanContinue: (value) => set({ canContinue: value }),
+    setSubmitAction: (fn) => set({ submitAction: fn }),
+  })
+  /*{
 			name: "onboarding-store", // required at minimum
 			// Uncomment and configure below if you want to customize persistence
 			// partialize: (state) => ({ step: state.step, totalSteps: state.totalSteps }),
@@ -75,7 +81,7 @@ export const selectIsFirst = (s: OnboardingStore) => s.step <= 1;
 export const selectIsLast = (s: OnboardingStore) => s.step >= s.totalSteps;
 export const selectCanPrev = (s: OnboardingStore) => s.step > 1;
 export const selectCanNext = (s: OnboardingStore) => s.step < s.totalSteps;
-
+export const selectedPhone = (s: OnboardingStore) => s.phone;
 // Example to use in a component (TypeScript):
 // const step = useOnboardingStore(selectStep);
 // const next = useOnboardingStore((s) => s.next);
