@@ -1,8 +1,8 @@
+import { UserViewContainer } from "@/components/Containers/UserViewContainer/UserViewContainer";
 import GradientButton from "@/components/Inputs/GradientButton";
 import { ItempUserTry } from "@/global/interfaces/general.interface";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { UserViewContainer } from "../UserViewContainer/UserViewContainer";
 
 export const ConnectionScreen = ({ me }: ItempUserTry) => {
   const [selectedFilter, setSelectedFilter] = useState("all");

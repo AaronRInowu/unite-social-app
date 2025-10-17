@@ -37,6 +37,7 @@ module.exports = {
       },
       backgroundColor: {
         "input-bg": "#ffffff1A",
+        "input-bg-solid": "#262652",
         "bg-third": "#22244B",
         "gradient-1": "rgb(21,3,52)",
         "gradient-2": "rgb(24,7,64)",
